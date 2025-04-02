@@ -7,10 +7,16 @@ const PORT = process.env.PORT || 5000;
 const MONGO_URL = process.env.MONGO_URL;
 
 // Initialize models BEFORE routes
-require("./models/about"); // This registers the model with Mongoose
+require("./models/about"); 
+require("./models/skill"); 
+require("./models/project"); 
+require("./models/team"); 
 
 // Then import routes
 const aboutRoutes = require("./routes/aboutRoutes");
+const skillRoutes = require("./routes/skillRoutes");
+const projectRoutes = require("./routes/projectRoutes");
+const teamRoutes = require("./routes/teamRoutes");
 
 // Middleware
 app.use(cors());
@@ -38,6 +44,9 @@ async function connectDB() {
 
 // Routes
 app.use("/api/about", aboutRoutes);
+app.use("/api/skill", skillRoutes);
+app.use("/api/project", projectRoutes);
+app.use("/api/team", teamRoutes);
 
 // Error Handling
 app.use((err, req, res, next) => {

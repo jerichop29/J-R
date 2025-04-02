@@ -6,7 +6,7 @@ const ProjectSchema = new mongoose.Schema(
     description: { type: String, required: true },
     image: { type: Buffer, required: true }, 
   },
-  { timestamps: true }
+  { timestamps: true, collection: "Project" }
 );
 
 module.exports = mongoose.model("Project", ProjectSchema);

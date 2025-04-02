@@ -6,7 +6,7 @@ const TeamSchema = new mongoose.Schema(
     info: { type: String, required: true },
     avatar: { type: Buffer, required: true }, 
   },
-  { timestamps: true }
+  { timestamps: true, collection: "Team" }
 );
 
 module.exports = mongoose.model("Team", TeamSchema);
