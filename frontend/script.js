@@ -1,22 +1,21 @@
 document.addEventListener("DOMContentLoaded", async () => {
     try {
-        // Fetch data from backend API
         const response = await fetch("http://localhost:5000/api/about");
         const data = await response.json();
 
-        // Check if data exists
         if (data) {
-            document.getElementById(".section-title").textContent = data.title;
-            document.getElementById(".about-caption p").textContent = data.description;
+            // IDs: Use without # in getElementById
+            document.getElementById("about-title").textContent = data.title;
+            document.getElementById("about-caption").textContent = data.description;
 
-            // Handle CV Download
+            // Classes: Use querySelector with .
             if (data.cv) {
-                const cvButton = document.getElementById(".about-cv");
-                cvButton.style.display = "inline-block"; // Show button if CV exists
+                const cvButton = document.querySelector(".about-cv");
+                cvButton.style.display = "inline-block";
                 cvButton.addEventListener("click", () => {
                     const blob = new Blob([new Uint8Array(data.cv.data)], { type: "application/pdf" });
                     const url = URL.createObjectURL(blob);
-                    window.open(url, "_blank"); // Open CV in a new tab
+                    window.open(url, "_blank");
                 });
             }
         }
