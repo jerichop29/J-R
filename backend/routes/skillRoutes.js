@@ -6,7 +6,7 @@ const Skill = mongoose.model("Skill"); // Get the registered model
 // GET Skill data
 router.get("/", async (req, res, next) => {
   try {
-    const skill = await Skill.findOne();
+    const skill = await Skill.find();
     if (!skill) {
       // Create default if not exists
       const newSkill = await Skill.create({});

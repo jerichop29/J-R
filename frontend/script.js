@@ -1,102 +1,208 @@
 document.addEventListener("DOMContentLoaded", async () => {
-    try {
-        // Fetch data from API
-        const [aboutRes, skillsRes, projectsRes, teamRes] = await Promise.all([
-            fetch("http://localhost:5000/api/about"),
-            fetch("http://localhost:5000/api/skill"),
-            fetch("http://localhost:5000/api/project"),
-            fetch("http://localhost:5000/api/team")
-        ]);
+  try {
+    // ========== Add PDF Modal HTML ==========
+    const pdfModalHTML = `
+      <div class="modal fade" id="pdfModal" tabindex="-1">
+          <div class="modal-dialog modal-xl modal-dialog-centered">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <h5 class="modal-title">CV Preview</h5>
+                  </div>
+                  <div class="modal-body position-relative">
+                      <div class="pdf-loading text-center py-5">
+                          <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;"></div>
+                          <p class="mt-3">Loading CV...</p>
+                      </div>
+                      <iframe id="pdfViewer" class="w-100" style="height: 70vh; display: none;"></iframe>
+                  </div>
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="manualCloseModal">Close</button>
+                      <a id="pdfDownload" class="btn btn-primary" download>
+                          <i class="bi bi-download"></i> Download CV
+                      </a>
+                  </div>
+              </div>
+          </div>
+      </div>`;
+    document.body.insertAdjacentHTML("beforeend", pdfModalHTML);
 
-        const aboutData = await aboutRes.json();
-        const skillsData = await skillsRes.json();
-        const projectsData = await projectsRes.json();
-        const teamData = await teamRes.json();
+    // ========== Initialize Modal ==========
+    const pdfModal = new bootstrap.Modal(document.getElementById("pdfModal")); 
+    const closeModalBtn = document.getElementById("manualCloseModal");
+    const pdfViewer = document.getElementById("pdfViewer");
+    const loadingSpinner = document.querySelector(".pdf-loading");
+    
+    // ========== Manual Modal Close ==========
+    closeModalBtn.addEventListener("click", () => {
+      pdfModal.hide();
+    });
 
-        // Update About Section (unchanged)
-        if (aboutData) {
-            document.getElementById("about-title").textContent = aboutData.title || '';
-            document.getElementById("about-description").textContent = aboutData.description || '';
 
-            if (aboutData.cv) {
-                const cvButton = document.querySelector(".about-cv");
-                cvButton.style.display = "inline-block";
-                cvButton.addEventListener("click", () => {
-                    const blob = new Blob([new Uint8Array(aboutData.cv.data)], { type: "application/pdf" });
-                    const url = URL.createObjectURL(blob);
-                    window.open(url, "_blank");
-                });
-            }
-        }
+    // ========== Original Fetch Code ==========
+    const [aboutRes, skillsRes, projectsRes, teamRes] = await Promise.all([
+      fetch("http://localhost:5000/api/about"),
+      fetch("http://localhost:5000/api/skill"),
+      fetch("http://localhost:5000/api/project"),
+      fetch("http://localhost:5000/api/team"),
+    ]);
 
-        // Update Skill Section - modified for multiple skills
-        const skillsContainer = document.querySelector("#skill .row");
-        if (skillsData && Array.isArray(skillsData)) {
-            skillsContainer.innerHTML = ''; // Clear the template
-            
-            skillsData.forEach(skill => {
-                const skillCol = document.createElement("div");
-                skillCol.className = "col-md-6 col-lg-3 mb-4";
-                skillCol.innerHTML = `
-                    <div class="skill-card">
-                        <div class="body">
-                            <img src="${skill.icon || ''}" alt="${skill.title || 'Skill'}" class="icon">
-                            <h6 class="title">${skill.title || ''}</h6>
-                            <p class="subtitle">${skill.description || ''}</p>
-                        </div>
-                    </div>
-                `;
-                skillsContainer.appendChild(skillCol);
-            });
-        }
+    const aboutData = await aboutRes.json();
+    const skillsData = await skillsRes.json();
+    const projectsData = await projectsRes.json();
+    const teamData = await teamRes.json();
 
-        // Update Project Section - modified for multiple projects
-        const projectsContainer = document.querySelector("#projects .row");
-        if (projectsData && Array.isArray(projectsData)) {
-            projectsContainer.innerHTML = ''; // Clear the template
-            
-            projectsData.forEach(project => {
-                const projectCol = document.createElement("div");
-                projectCol.className = "col-md-4 mb-4";
-                projectCol.innerHTML = `
-                    <a href="${project.link || '#'}" class="projects-card">
-                        <img src="${project.image || ''}" class="projects-card-img" alt="${project.title || 'Project'}">    
-                        <span class="projects-card-overlay">
-                            <span class="projects-card-caption">
-                                <h4>${project.title || ''}</h4>
-                                <p class="font-weight-normal">${project.description || ''}</p>
-                            </span>                         
-                        </span>                     
-                    </a>
-                `;
-                projectsContainer.appendChild(projectCol);
-            });
-        }
+    
+    // ========== Modified About Section ==========
+    if (aboutData?.data) {
+      document.getElementById("about-title").textContent =
+        aboutData.data.title || "";
+      document.getElementById("about-description").textContent =
+        aboutData.data.description || "";
 
-        // Update Team Section - modified for multiple team members
-        const teamContainer = document.querySelector("#team .row");
-        if (teamData && Array.isArray(teamData)) {
-            teamContainer.innerHTML = ''; // Clear the template
-            
-            teamData.forEach(member => {
-                const memberCol = document.createElement("div");
-                memberCol.className = "col-md-6";
-                memberCol.innerHTML = `
-                    <div class="team-card">
-                        <div class="team-card-img-holder">
-                            <img src="${member.avatar || ''}" class="team-card-img" alt="${member.name || 'Team member'}">                           
-                        </div>
-                        <div class="team-card-body">
-                            <p class="team-card-subtitle">${member.position || ''}</p>
-                            <h6 class="team-card-title">${member.name || ''}</h6>
-                            <p class="team-card-description">${member.description || ''}</p>
-                        </div>
-                    </div>
-                `;
-                teamContainer.appendChild(memberCol);
-            });
-        }
-    } catch (error) {
-        console.error("Error fetching data:", error);
+      const cvButton = document.querySelector(".about-cv");
+      if (aboutData.data.cv) {
+        const cvPath = aboutData.data.cv.replace(/\\/g, "/");
+        const cvUrl = `http://127.0.0.1:5500/backend${cvPath}`;
+
+        cvButton.style.display = "inline-block";
+        cvButton.addEventListener("click", (e) => {
+          e.preventDefault();
+
+          // Show loading state
+          pdfViewer.style.display = "none";
+          loadingSpinner.style.display = "block";
+          document.getElementById("pdfDownload").href = cvUrl;
+
+          // Load PDF
+          pdfViewer.src = cvUrl;
+          pdfViewer.onload = () => {
+            loadingSpinner.style.display = "none";
+            pdfViewer.style.display = "block";
+          };
+
+          pdfModal.show();
+        });
+      } else {
+        cvButton.style.display = "none";
+      }
     }
+
+    // ========== Original Skills Section ==========
+    if (skillsData) {
+      const skillContainer = document.getElementById("skill-container");
+      skillContainer.innerHTML = "";
+      const skillsArray = Array.isArray(skillsData) ? skillsData : [skillsData];
+
+      skillsArray.forEach((skill) => {
+        const iconSrc = getImagePath(skill.icon, "assets/img/pencil-case.svg");
+
+        const skillCol = document.createElement("div");
+        skillCol.className = "col-md-6 col-lg-3";
+        skillCol.innerHTML = `
+                  <div class="skill-card">
+                      <div class="body">
+                          <img src="${iconSrc}" alt="${
+          skill.title || "Skill"
+        }" class="icon" 
+                              onerror="this.src='assets/img/pencil-case.svg'">
+                          <h6 class="title">${skill.title || "Skill Title"}</h6>
+                          <p class="subtitle">${
+                            skill.description || "Skill description"
+                          }</p>
+                      </div>
+                  </div>
+              `;
+        skillContainer.appendChild(skillCol);
+      });
+    }
+
+    // ========== Original Projects Section ==========
+    if (projectsData) {
+      const projectsContainer = document.getElementById("projects-container");
+      projectsContainer.innerHTML = "";
+      const projectsArray = Array.isArray(projectsData)
+        ? projectsData
+        : [projectsData];
+
+      projectsArray.forEach((project) => {
+        const imageSrc = getImagePath(project.image, "assets/img/folio-1.jpg");
+
+        const projectCol = document.createElement("div");
+        projectCol.className = "col-md-4";
+        projectCol.innerHTML = `
+                  <a href="#" class="projects-card">
+                      <img src="${imageSrc}" class="projects-card-img" 
+                          alt="${project.title || "Project"}"
+                          onerror="this.src='assets/img/folio-1.jpg'">
+                      <span class="projects-card-overlay">
+                          <span class="projects-card-caption">
+                              <h4>${project.title || "Project Title"}</h4>
+                              <p class="font-weight-normal">${
+                                project.description || "Project description"
+                              }</p>
+                          </span>
+                      </span>
+                  </a>
+              `;
+        projectsContainer.appendChild(projectCol);
+      });
+    }
+
+    // ========== Original Team Section ==========
+    if (teamData) {
+      const teamContainer = document.getElementById("team-container");
+      teamContainer.innerHTML = "";
+      const teamArray = Array.isArray(teamData) ? teamData : [teamData];
+
+      teamArray.forEach((member) => {
+        const avatarSrc = getImagePath(member.avatar, "assets/img/avatar2.jpg");
+
+        const teamCol = document.createElement("div");
+        teamCol.className = "col-md-6";
+        teamCol.innerHTML = `
+                  <div class="team-card">
+                      <div class="team-card-img-holder">
+                          <img src="${avatarSrc}" class="team-card-img" 
+                              alt="${member.title || "Team Member"}"
+                              onerror="this.src='assets/img/avatar2.jpg'">
+                      </div>
+                      <div class="team-card-body">
+                          <p class="team-card-subtitle">${
+                            member.description || "Team member description"
+                          }</p>
+                          <h6 class="team-card-title">${
+                            member.title || "Team Member Name"
+                          }</h6>
+                      </div>
+                  </div>
+              `;
+        teamContainer.appendChild(teamCol);
+      });
+    }
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    const errorElement = document.createElement("div");
+    errorElement.className = "alert alert-danger text-center";
+    errorElement.textContent = "Failed to load data. Please try again later.";
+    document.body.prepend(errorElement);
+  }
 });
+
+// ========== Original Helper Function ==========
+function getImagePath(bufferData, defaultImage) {
+  try {
+    if (bufferData && bufferData.type === "Buffer") {
+      const imageName = String.fromCharCode(...bufferData.data);
+      const imagePath = `assets/img/${imageName}`;
+
+      const img = new Image();
+      img.src = imagePath;
+
+      return img.complete ? imagePath : defaultImage;
+    }
+    return defaultImage;
+  } catch (error) {
+    console.error("Error processing image:", error);
+    return defaultImage;
+  }
+}

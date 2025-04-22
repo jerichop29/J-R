@@ -6,7 +6,7 @@ const Project = mongoose.model("Project"); // Get the registered model
 // GET Project data
 router.get("/", async (req, res, next) => {
   try {
-    const project = await Project.findOne();
+    const project = await Project.find();
     if (!project) {
       // Create default if not exists
       const newAbout = await Project.create({});

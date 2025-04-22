@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>J&R</title>
   <meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport" />
-  <link rel="icon" href="assets/img/kaiadmin/favicon.ico" type="image/x-icon" />
+  <link rel="icon" href="" type="image/x-icon" />
 
   <!-- Fonts and icons -->
   <script src="assets/js/plugin/webfont/webfont.min.js"></script>
@@ -45,7 +45,7 @@
         <!-- Logo Header -->
         <div class="logo-header" data-background-color="dark">
           <a href="index.html" class="logo">
-            <img src="assets/img/kaiadmin/logo_light.svg" alt="navbar brand" class="navbar-brand" height="20" />
+            <img src="" alt="navbar brand" class="navbar-brand" height="20" />
           </a>
           <div class="nav-toggle">
             <button class="btn btn-toggle toggle-sidebar">
@@ -65,7 +65,7 @@
         <div class="sidebar-content">
           <ul class="nav nav-secondary">
             <li class="nav-item active">
-              <a href="widgets.html">
+              <a href="dashboard.html">
                 <i class="fas fa-home"></i>
                 <p>Dashboard</p>
               </a>
@@ -149,8 +149,8 @@
                           <img src="assets/img/profile.jpg" alt="image profile" class="avatar-img rounded" />
                         </div>
                         <div class="u-text">
-                          <h4>Hizrian</h4>
-                          <p class="text-muted">hello@example.com</p>
+                          <h4>Reyven</h4>
+                          <p class="text-muted">Reyven@example.com</p>
                         </div>
                       </div>
                     </li>
@@ -188,7 +188,7 @@
                     <div class="col col-stats ms-3 ms-sm-0">
                       <div class="numbers">
                         <p class="card-category">About</p>
-                        <h4 class="card-title">1</h4>
+                        <h4 class="card-title" id="about-count">0</h4>
                       </div>
                     </div>
                   </div>
@@ -207,7 +207,7 @@
                     <div class="col col-stats ms-3 ms-sm-0">
                       <div class="numbers">
                         <p class="card-category">Skills</p>
-                        <h4 class="card-title">4</h4>
+                        <h4 class="card-title" id="skill-count">0</h4>
                       </div>
                     </div>
                   </div>
@@ -226,7 +226,7 @@
                     <div class="col col-stats ms-3 ms-sm-0">
                       <div class="numbers">
                         <p class="card-category">Projects</p>
-                        <h4 class="card-title">6</h4>
+                        <h4 class="card-title" id="project-count"></h4>
                       </div>
                     </div>
                   </div>
@@ -245,7 +245,7 @@
                     <div class="col col-stats ms-3 ms-sm-0">
                       <div class="numbers">
                         <p class="card-category">Team Members</p>
-                        <h4 class="card-title">2</h4>
+                        <h4 class="card-title" id="team-count">0</h4>
                       </div>
                     </div>
                   </div>
@@ -297,6 +297,7 @@
   <script src="assets/js/kaiadmin.min.js"></script>
 
   <script src="assets/js/demo.js"></script>
+  <script src="script/dashboard.js"></script>
 </body>
 
 </html>

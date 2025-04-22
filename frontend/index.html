@@ -1,22 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="J&R Team Portfolio">
+    <meta name="description" content="J&R Team projects">
     <meta name="author" content="J&R Team">
-    <title>J&R Team Portfolio</title>
+    <title>J&R Team projects</title>
     <!-- font icons -->
     <link rel="stylesheet" href="assets/vendors/themify-icons/css/themify-icons.css">
     <!-- Bootstrap + styles -->
     <link rel="stylesheet" href="assets/css/style.css">
-</head>
-<body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
     
+</head>
+
+<body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
+
     <!-- Page Navbar -->
     <nav class="custom-navbar" data-spy="affix" data-offset-top="20">
         <div class="container">
-            <a class="logo" href="#">Team J&R</a>         
+            <a class="logo" href="#">Team J&R</a>
             <ul class="nav">
                 <li class="item"><a class="link" href="#home">Home</a></li>
                 <li class="item"><a class="link" href="#about">About</a></li>
@@ -30,7 +33,7 @@
                     <div class="hamburger-inner"></div>
                 </div>
             </a>
-        </div>          
+        </div>
     </nav><!-- End of Page Navbar -->
 
     <!-- page header -->
@@ -43,7 +46,7 @@
             </h1>
             <p class="header-subtitle">IT Students at La Consolacion College Tanauan</p>
             <a class="btn btn-primary" href="#about">Learn More</a>
-        </div>              
+        </div>
     </header><!-- end of page header -->
 
     <!-- about section -->
@@ -57,33 +60,35 @@
                     <p class="section-subtitle">Who are we?</p>
                     <h2 class="section-title mb-3" id="about-title"></h2>
                     <p id="about-description"></p>
-                    <button class="btn-rounded btn btn-outline-primary mt-4 about-cv" style="display: none;">Download CV</button>
-                </div>              
+                    <button class="btn-rounded btn btn-outline-primary mt-4 about-cv">Download CV</button>
+                </div>
             </div>
         </div>
-    </section><!-- end of about section -->
+    </section>
+    <!-- end of about section -->
 
     <!-- skills section -->
-    <section class="section pt-6" id="skills">
+    <section class="section pt-6" id="skill">
         <div class="container text-center">
             <p class="section-subtitle">What We Are Capable Of?</p>
             <h6 class="section-title mb-6">Our Skills</h6>
-            <div class="row" id="skills-container">
-                <!-- Skills will be dynamically inserted here -->
+            <!-- This container will be populated dynamically -->
+            <div class="row" id="skill-container">
+                <!-- Skill cards will be inserted here by JavaScript -->
             </div>
         </div>
     </section><!-- end of skills section -->
-    
-    <!-- projects section -->
-    <section class="section pt-6" id="projects">
-        <div class="container text-center">
-            <p class="section-subtitle">What We Did?</p>
-            <h6 class="section-title mb-6">Our Projects</h6>
-            <div class="row" id="projects-container">
-                <!-- Projects will be dynamically inserted here -->
-            </div>
+
+<!-- projects section -->
+<section class="section" id="projects">
+    <div class="container text-center">
+        <p class="section-subtitle">What We Did?</p>
+        <h6 class="section-title mb-6">Our Projects</h6>
+        <div class="row" id="projects-container">
+            <!-- Project cards will be inserted here dynamically -->
         </div>
-    </section><!-- end of projects section -->
+    </div>
+</section><!-- end of projects section -->
 
     <!-- call to action section -->
     <section class="section-sm bg-primary">
@@ -100,16 +105,16 @@
         </div>
     </section><!-- end of section -->
 
-    <!-- team section -->
-    <section class="section" id="team">
-        <div class="container text-center">
-            <p class="section-subtitle">Who are the Members of the Team?</p>
-            <h6 class="section-title mb-6">Our Team</h6>
-            <div class="row" id="team-container">
-                <!-- Team members will be dynamically inserted here -->
-            </div>
+<!-- team section -->
+<section class="section" id="team">
+    <div class="container text-center">
+        <p class="section-subtitle">Who are the Members of the Team?</p>
+        <h6 class="section-title mb-6">Our Team</h6>
+        <div class="row" id="team-container">
+            <!-- Team members will be inserted here dynamically -->
         </div>
-    </section><!-- end of team section -->
+    </div>
+</section><!-- end of team section -->
 
     <!-- contact section -->
     <section class="section" id="contact">
@@ -119,26 +124,29 @@
             <form action="" class="contact-form col-md-10 col-lg-8 m-auto">
                 <div class="form-row">
                     <div class="form-group col-sm-6">
-                        <input type="text" size="50" class="form-control" placeholder="Your Name" required>                 
+                        <input type="text" size="50" class="form-control" placeholder="Your Name" required>
                     </div>
                     <div class="form-group col-sm-6">
-                        <input type="email" class="form-control" placeholder="Enter Email" required>                 
+                        <input type="email" class="form-control" placeholder="Enter Email" required>
                     </div>
                     <div class="form-group col-sm-12">
-                        <textarea name="comment" id="comment" rows="6" class="form-control" placeholder="Write Something"></textarea>
+                        <textarea name="comment" id="comment" rows="6" class="form-control"
+                            placeholder="Write Something"></textarea>
                     </div>
                     <div class="form-group col-sm-12 mt-3">
-                        <input type="submit" value="Send Message" class="btn btn-outline-primary rounded">                  
+                        <input type="submit" value="Send Message" class="btn btn-outline-primary rounded">
                     </div>
-                </div>  
+                </div>
             </form>
         </div>
     </section><!-- end of contact section -->
 
     <!-- footer -->
     <div class="container">
-        <footer class="footer">       
-            <p class="mb-0">Copyright <script>document.write(new Date().getFullYear())</script> &copy; <a href="#">J&R</a></p>
+        <footer class="footer">
+            <p class="mb-0">Copyright
+                <script>document.write(new Date().getFullYear())</script> &copy; <a href="#">J&R</a>
+            </p>
             <div class="social-links text-right m-auto ml-sm-auto">
                 <a href="https://facebook.com" class="link" target="_blank"><i class="ti-facebook"></i></a>
                 <a href="https://twitter.com" class="link" target="_blank"><i class="ti-twitter-alt"></i></a>
@@ -146,14 +154,15 @@
             </div>
         </footer>
     </div><!-- end of page footer -->
-    
+
     <!-- core  -->
     <script src="assets/vendors/jquery/jquery-3.4.1.js"></script>
     <script src="assets/vendors/bootstrap/bootstrap.bundle.js"></script>
     <!-- bootstrap 3 affix -->
     <script src="assets/vendors/bootstrap/bootstrap.affix.js"></script>
     <!-- js -->
-    <script src="assets/main.js"></script>
+    <script src="assets/js/main.js"></script>
     <script src="script.js"></script>
 </body>
+
 </html>

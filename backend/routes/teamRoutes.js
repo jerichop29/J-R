@@ -6,7 +6,7 @@ const Team = mongoose.model("Team"); // Get the registered model
 // GET Team data
 router.get("/", async (req, res, next) => {
   try {
-    const team = await Team.findOne();
+    const team = await Team.find();
     if (!team) {
       // Create default if not exists
       const newAbout = await Team.create({});

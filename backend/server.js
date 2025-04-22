@@ -5,22 +5,26 @@ const cors = require("cors");
 const app = express();
 const PORT = process.env.PORT || 5000;
 const MONGO_URL = process.env.MONGO_URL;
+const path = require('path');
 
 // Initialize models BEFORE routes
-require("./models/about"); 
 require("./models/skill"); 
 require("./models/project"); 
 require("./models/team"); 
+require("./models/user");
 
 // Then import routes
 const aboutRoutes = require("./routes/aboutRoutes");
 const skillRoutes = require("./routes/skillRoutes");
 const projectRoutes = require("./routes/projectRoutes");
 const teamRoutes = require("./routes/teamRoutes");
+const authRoutes = require("./routes/userRoutes");
 
 // Middleware
 app.use(cors());
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 
 async function connectDB() {
   if (!MONGO_URL) {
@@ -43,10 +47,12 @@ async function connectDB() {
 }
 
 // Routes
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use("/api/about", aboutRoutes);
 app.use("/api/skill", skillRoutes);
 app.use("/api/project", projectRoutes);
 app.use("/api/team", teamRoutes);
+app.use("/api/user", authRoutes);
 
 // Error Handling
 app.use((err, req, res, next) => {
