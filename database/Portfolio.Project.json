@@ -1,0 +1,45 @@
+[{
+  "_id": {
+    "$oid": "6808f492a028d4a8d0239784"
+  },
+  "title": "Digital Art",
+  "description": "Digital Art using Gimp",
+  "image": "/uploads/image-1745417362266.PNG",
+  "createdAt": {
+    "$date": "2025-04-23T14:09:22.269Z"
+  },
+  "updatedAt": {
+    "$date": "2025-04-23T14:09:22.269Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6808f4b9a028d4a8d023978d"
+  },
+  "title": "Email Spam Classifier",
+  "description": "Implemented a spam classification model using Naive Bayes and SVM, analyzing word frequencies to detect spam messages.",
+  "image": "/uploads/image-1745418523432.jpg",
+  "createdAt": {
+    "$date": "2025-04-23T14:10:01.689Z"
+  },
+  "updatedAt": {
+    "$date": "2025-04-23T14:28:43.434Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6808f553a028d4a8d02397b6"
+  },
+  "title": "Assembly Language Art",
+  "description": "Digital Art of Pikachu using Assembly Language",
+  "image": "/uploads/image-1745417555528.PNG",
+  "createdAt": {
+    "$date": "2025-04-23T14:12:35.530Z"
+  },
+  "updatedAt": {
+    "$date": "2025-04-23T14:12:35.530Z"
+  },
+  "__v": 0
+}]

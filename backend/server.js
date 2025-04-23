@@ -7,16 +7,13 @@ const PORT = process.env.PORT || 5000;
 const MONGO_URL = process.env.MONGO_URL;
 const path = require('path');
 
-// Initialize models BEFORE routes 
-
-require("./models/user");
-
 // Then import routes
+const authRoutes = require("./routes/authRoutes");
 const aboutRoutes = require("./routes/aboutRoutes");
 const skillRoutes = require("./routes/skillRoutes");
 const projectRoutes = require("./routes/projectRoutes");
 const memberRoutes = require("./routes/memberRoutes");
-const authRoutes = require("./routes/userRoutes");
+
 
 // Middleware
 app.use(cors());
@@ -50,7 +47,7 @@ app.use("/api/about", aboutRoutes);
 app.use("/api/skill", skillRoutes);
 app.use("/api/project", projectRoutes);
 app.use("/api/member", memberRoutes);
-app.use("/api/user", authRoutes);
+app.use("/api/auth", authRoutes);
 
 // Error Handling
 app.use((err, req, res, next) => {

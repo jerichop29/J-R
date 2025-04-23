@@ -170,22 +170,19 @@ if (memberData?.data) {
       : "assets/img/avatar2.jpg";
 
     const memberCol = document.createElement("div");
-    memberCol.className = "col-md-6 col-lg-4 mb-4"; // Added responsive columns
+    memberCol.className = "col-md-6"; // Added responsive columns
     memberCol.innerHTML = `
-      <div class="team-card h-100">
+      <div class="team-card">
           <div class="team-card-img-holder">
               <img src="${avatarSrc}" class="team-card-img" 
                   alt="${member.name || "Team Member"}"
                   onerror="this.src='assets/img/avatar2.jpg'">
           </div>
-          <div class="team-card-body text-center p-3">
-              <h5 class="team-card-title mb-2">${member.name || "Team Member"}</h5>
-              <p class="team-card-description ml-3">${
+          <div class="team-card-body">
+              <p class="team-card-subtitle">${
                 member.info || "Member description"
               }</p>
-              ${member.linkedin ? `<a href="${member.linkedin}" target="_blank" class="btn btn-outline-primary btn-sm mt-2">
-                  <i class="bi bi-linkedin"></i> Connect
-              </a>` : ''}
+              <h6 class="team-card-title">${member.name || "Team Member"}</h6>
           </div>
       </div>
     `;

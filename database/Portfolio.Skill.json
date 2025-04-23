@@ -1,0 +1,60 @@
+[{
+  "_id": {
+    "$oid": "68089d548a3a9fcfe2eedbf3"
+  },
+  "title": "Digital Art",
+  "description": "Experienced in creating digital art using GIMP, with skills in photo manipulation, digital painting, and graphic design.",
+  "icon": "/uploads/icon-1745417990089.svg",
+  "createdAt": {
+    "$date": "2025-04-23T07:57:08.857Z"
+  },
+  "updatedAt": {
+    "$date": "2025-04-23T14:19:50.090Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6808bd9da359f896614b36f7"
+  },
+  "title": "Web Development",
+  "description": "Proficient in modern web development with a strong foundation in frontend and backend technologies.",
+  "icon": "/uploads/icon-1745417958563.svg",
+  "createdAt": {
+    "$date": "2025-04-23T10:14:53.540Z"
+  },
+  "updatedAt": {
+    "$date": "2025-04-23T14:19:18.564Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6808f728a028d4a8d02397f4"
+  },
+  "title": "Video Editing",
+  "description": "Skilled in professional video editing, creative transitions, advanced effects, and color grading techniques.",
+  "icon": "/uploads/icon-1745418024208.svg",
+  "createdAt": {
+    "$date": "2025-04-23T14:20:24.210Z"
+  },
+  "updatedAt": {
+    "$date": "2025-04-23T14:24:46.884Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6808f7a6a028d4a8d02397fd"
+  },
+  "title": "Machine Learning",
+  "description": "Experienced in machine learning, model training, prediction, and deployment tools.",
+  "icon": "/uploads/icon-1745418150857.svg",
+  "createdAt": {
+    "$date": "2025-04-23T14:22:30.859Z"
+  },
+  "updatedAt": {
+    "$date": "2025-04-23T14:23:05.909Z"
+  },
+  "__v": 0
+}]

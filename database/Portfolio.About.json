@@ -1,0 +1,11 @@
+[{
+  "_id": {
+    "$oid": "67e8f1cbb996346b1a10e834"
+  },
+  "title": "About J&R",
+  "description": "We are a passionate team of IT students from La Consolacion College Tanauan, committed to creating smart and practical digital solutions. Whether it's mobile apps, system interfaces, or intelligent software, we fuse innovation with function to deliver projects that solve real-world problems.\r\n\r\nExplore our journey in tech, see our works, and discover how J&R is shaping the future through code and creativity.",
+  "cv": "/uploads/cv-1745417699499.pdf",
+  "updatedAt": {
+    "$date": "2025-04-23T14:14:59.501Z"
+  }
+}]

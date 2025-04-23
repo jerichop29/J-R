@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="assets/vendors/themify-icons/css/themify-icons.css">
     <!-- Bootstrap + styles -->
     <link rel="stylesheet" href="assets/css/style.css">
-    
+
 </head>
 
 <body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
@@ -79,16 +79,16 @@
         </div>
     </section><!-- end of skills section -->
 
-<!-- projects section -->
-<section class="section" id="projects">
-    <div class="container text-center">
-        <p class="section-subtitle">What We Did?</p>
-        <h6 class="section-title mb-6">Our Projects</h6>
-        <div class="row" id="projects-container">
-            <!-- Project cards will be inserted here dynamically -->
+    <!-- projects section -->
+    <section class="section" id="projects">
+        <div class="container text-center">
+            <p class="section-subtitle">What We Did?</p>
+            <h6 class="section-title mb-6">Our Projects</h6>
+            <div class="row" id="projects-container">
+                <!-- Project cards will be inserted here dynamically -->
+            </div>
         </div>
-    </div>
-</section><!-- end of projects section -->
+    </section><!-- end of projects section -->
 
     <!-- call to action section -->
     <section class="section-sm bg-primary">
@@ -105,41 +105,44 @@
         </div>
     </section><!-- end of section -->
 
-<!-- team section -->
-<section class="section" id="team">
-    <div class="container text-center">
-        <p class="section-subtitle">Who are the Members of the Team?</p>
-        <h6 class="section-title mb-6">Our Team</h6>
-        <div class="row" id="team-container">
-            
-        </div>
-    </div>
-</section><!-- end of team section -->
-
-    <!-- contact section -->
-    <section class="section" id="contact">
+    <!-- team section -->
+    <section class="section" id="team">
         <div class="container text-center">
-            <p class="section-subtitle">How can you communicate?</p>
-            <h6 class="section-title mb-5">Contact Us</h6>
-            <form action="" class="contact-form col-md-10 col-lg-8 m-auto">
-                <div class="form-row">
-                    <div class="form-group col-sm-6">
-                        <input type="text" size="50" class="form-control" placeholder="Your Name" required>
-                    </div>
-                    <div class="form-group col-sm-6">
-                        <input type="email" class="form-control" placeholder="Enter Email" required>
-                    </div>
-                    <div class="form-group col-sm-12">
-                        <textarea name="comment" id="comment" rows="6" class="form-control"
-                            placeholder="Write Something"></textarea>
-                    </div>
-                    <div class="form-group col-sm-12 mt-3">
-                        <input type="submit" value="Send Message" class="btn btn-outline-primary rounded">
-                    </div>
-                </div>
-            </form>
+            <p class="section-subtitle">Who are the Members of the Team?</p>
+            <h6 class="section-title mb-6">Our Team</h6>
+            <div class="row" id="team-container">
+
+            </div>
         </div>
-    </section><!-- end of contact section -->
+    </section><!-- end of team section -->
+
+   <!-- Updated Contact Section -->
+<section class="section" id="contact">
+    <div class="container text-center">
+        <p class="section-subtitle">How can you communicate?</p>
+        <h6 class="section-title mb-5">Contact Us</h6>
+        <form id="contact-form" class="contact-form col-md-10 col-lg-8 m-auto">
+            <div class="form-row">
+                <div class="form-group col-sm-6">
+                    <input type="text" name="user_name" class="form-control" placeholder="Your Name" required>
+                </div>
+                <div class="form-group col-sm-6">
+                    <input type="email" name="user_email" class="form-control" placeholder="Enter Email" required>
+                </div>
+                <div class="form-group col-sm-12">
+                    <textarea name="message" rows="6" class="form-control" placeholder="Write Something" required></textarea>
+                </div>
+                <div class="form-group col-sm-12 mt-3">
+                    <button type="submit" class="btn btn-outline-primary rounded">
+                        <span class="submit-text">Send Message</span>
+                        <span class="spinner-border spinner-border-sm d-none" role="status"></span>
+                    </button>
+                </div>
+            </div>
+            <div class="alert mt-3 d-none" id="form-alert"></div>
+        </form>
+    </div>
+</section>
 
     <!-- footer -->
     <div class="container">
@@ -148,9 +151,11 @@
                 <script>document.write(new Date().getFullYear())</script> &copy; <a href="#">J&R</a>
             </p>
             <div class="social-links text-right m-auto ml-sm-auto">
-                <a href="https://facebook.com" class="link" target="_blank"><i class="ti-facebook"></i></a>
+                <a href="https://www.facebook.com/oruga.reyven" class="link" target="_blank"><i
+                        class="ti-facebook"></i></a>
                 <a href="https://twitter.com" class="link" target="_blank"><i class="ti-twitter-alt"></i></a>
-                <a href="https://instagram.com" class="link" target="_blank"><i class="ti-instagram"></i></a>
+                <a href="https://www.instagram.com/ur.cynic/" class="link" target="_blank"><i
+                        class="ti-instagram"></i></a>
             </div>
         </footer>
     </div><!-- end of page footer -->
@@ -162,6 +167,8 @@
     <script src="assets/vendors/bootstrap/bootstrap.affix.js"></script>
     <!-- js -->
     <script src="assets/js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script src="mailer.js"></script>
     <script src="script.js"></script>
 </body>
 

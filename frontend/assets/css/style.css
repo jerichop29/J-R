@@ -60,6 +60,15 @@ body {
   background-color: #fff;
 }
 
+#form-alert {
+  transition: all 0.3s ease;
+}
+
+.spinner-border {
+  vertical-align: middle;
+  margin-left: 8px;
+}
+
 [tabindex="-1"]:focus {
   outline: 0 !important;
 }
@@ -11191,7 +11200,7 @@ p {
 
 .projects-card .projects-card-img {
   width: 100%;
-  height: 200px;
+  height: 350px;
 }
 
 .projects-card .projects-card-overlay {

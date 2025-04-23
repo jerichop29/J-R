@@ -75,7 +75,7 @@
               <input
                 class="input100"
                 type="password"
-                name="pass"
+                name="password"
                 placeholder="Password"
               />
               <span class="focus-input100"></span>
@@ -88,12 +88,15 @@
               <button class="login100-form-btn">Login</button>
             </div>
 
-            <div class="text-center p-t-12"></div>
+            <div class="text-center p-t-12"><a href="../index.html">Go Back To Website</a></div>
 
             <div class="text-center p-t-136">
               <a class="txt2" href="#"> </a>
             </div>
           </form>
+<div class="text-center mt-3" id="error-container">
+  <div class="alert alert-danger" id="error-message" style="display: none;"></div>
+</div>
         </div>
       </div>
     </div>
@@ -114,56 +117,7 @@
     </script>
     <!--===============================================================================================-->
     <script src="assets/js/main.js"></script>
+    <script src="auth_script.js"></script>
 
-<!-- Add this script at the bottom of your signin.html -->
-<script>
-	$(document).ready(function() {
-	  const loginForm = $('.login100-form');
-	  const errorMessage = $('#error-message');
-  
-	  loginForm.on('submit', function(e) {
-		e.preventDefault();
-		
-		const username = $('input[name="username"]').val();
-		const password = $('input[name="pass"]').val();
-		
-		// Show loading state
-		const loginBtn = $('.login100-form-btn');
-		const originalBtnText = loginBtn.html();
-		loginBtn.html('<i class="fa fa-spinner fa-spin"></i> Logging in...');
-		loginBtn.prop('disabled', true);
-		errorMessage.text('');
-		
-		// Send login request to your existing /api/user/login endpoint
-		$.ajax({
-		  url: '/api/user/login',
-		  type: 'POST',
-		  contentType: 'application/json',
-		  data: JSON.stringify({ 
-			username: username, 
-			password: password 
-		  }),
-		  success: function(response) {
-			if (response.success) {
-			  // Store user data in localStorage
-			  localStorage.setItem('userData', JSON.stringify(response.user));
-			  
-			  // Redirect to admin dashboard
-			  window.location.href = '../admin/dashboard.html';
-			} else {
-			  errorMessage.text(response.message);
-			  loginBtn.html(originalBtnText);
-			  loginBtn.prop('disabled', false);
-			}
-		  },
-		  error: function(xhr) {
-			errorMessage.text('Login failed. Please try again.');
-			loginBtn.html(originalBtnText);
-			loginBtn.prop('disabled', false);
-		  }
-		});
-	  });
-	});
-  </script>
   </body>
 </html>
