@@ -1,4 +1,4 @@
-const Project = require('../models/project');
+const Member = require('../models/member');
 const multer = require('multer');
 const path = require('path');
 
@@ -8,7 +8,7 @@ const storage = multer.diskStorage({
     cb(null, path.join(__dirname, '../uploads'));
   },
   filename: (req, file, cb) => {
-    cb(null, `image-${Date.now()}${path.extname(file.originalname)}`);
+    cb(null, `avatar-${Date.now()}${path.extname(file.originalname)}`);
   }
 });
 
@@ -28,72 +28,72 @@ const upload = multer({
 });
 
 // Controller functions
-const createProject = async (req, res) => {
+const createMember = async (req, res) => {
   try {
-    const project = await Project.create({
-      title: req.body.title,
-      description: req.body.description,
-      image: `/uploads/${req.file.filename}`
+    const member = await Member.create({
+      name: req.body.name,
+      info: req.body.info,
+      avatar: `/uploads/${req.file.filename}`
     });
-    res.status(201).json({ success: true, data: project });
+    res.status(201).json({ success: true, data: member });
   } catch (error) {
     res.status(500).json({ success: false, message: error.message });
   }
 };
 
-const getProjects = async (req, res) => {
+const getMembers = async (req, res) => {
   try {
-    const projects = await Project.find();
-    res.status(200).json({ success: true, data: projects });
+    const members = await Member.find();
+    res.status(200).json({ success: true, data: members });
   } catch (error) {
     res.status(500).json({ success: false, message: error.message });
   }
 };
 
-const getProjectById = async (req, res) => {
+const getMemberById = async (req, res) => {
   try {
-    const project = await Project.findById(req.params.id);
-    if (!project) {
-      return res.status(404).json({ success: false, message: 'Project not found' });
+    const member = await Member.findById(req.params.id);
+    if (!member) {
+      return res.status(404).json({ success: false, message: 'Member not found' });
     }
-    res.status(200).json({ success: true, data: project });
+    res.status(200).json({ success: true, data: member });
   } catch (error) {
     res.status(500).json({ success: false, message: error.message });
   }
 };
 
-const updateProject = async (req, res) => {
+const updateMember = async (req, res) => {
   try {
     const updateData = {
-      title: req.body.title,
-      description: req.body.description
+      name: req.body.name,
+      info: req.body.info
     };
 
     if (req.file) {
-      updateData.image = `/uploads/${req.file.filename}`;
+      updateData.avatar = `/uploads/${req.file.filename}`;
     }
 
-    const project = await Project.findByIdAndUpdate(
+    const member = await Member.findByIdAndUpdate(
       req.params.id,
       updateData,
       { new: true, runValidators: true }
     );
 
-    if (!project) {
-      return res.status(404).json({ success: false, message: 'Project not found' });
+    if (!member) {
+      return res.status(404).json({ success: false, message: 'Member not found' });
     }
 
-    res.status(200).json({ success: true, data: project });
+    res.status(200).json({ success: true, data: member });
   } catch (error) {
     res.status(500).json({ success: false, message: error.message });
   }
 };
 
-const deleteProject = async (req, res) => {
+const deleteMember = async (req, res) => {
   try {
-    const project = await Project.findByIdAndDelete(req.params.id);
-    if (!project) {
-      return res.status(404).json({ success: false, message: 'Project not found' });
+    const member = await Member.findByIdAndDelete(req.params.id);
+    if (!member) {
+      return res.status(404).json({ success: false, message: 'Member not found' });
     }
     res.status(200).json({ success: true, data: {} });
   } catch (error) {
@@ -101,21 +101,22 @@ const deleteProject = async (req, res) => {
   }
 };
 
-const getProjectCount = async (req, res) => {
+const getMemberCount = async (req, res) => {
   try {
-    const count = await Project.countDocuments();
+    const count = await Member.countDocuments();
     res.status(200).json({ success: true, count });
   } catch (error) {
     res.status(500).json({ success: false, message: error.message });
   }
 };
 
+
 module.exports = {
   upload,
-  createProject,
-  getProjects,
-  getProjectById,
-  updateProject,
-  deleteProject,
-  getProjectCount
+  createMember,
+  getMembers,
+  getMemberById,
+  updateMember,
+  deleteMember,
+  getMemberCount
 };

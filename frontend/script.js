@@ -27,31 +27,29 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.body.insertAdjacentHTML("beforeend", pdfModalHTML);
 
     // ========== Initialize Modal ==========
-    const pdfModal = new bootstrap.Modal(document.getElementById("pdfModal")); 
+    const pdfModal = new bootstrap.Modal(document.getElementById("pdfModal"));
     const closeModalBtn = document.getElementById("manualCloseModal");
     const pdfViewer = document.getElementById("pdfViewer");
     const loadingSpinner = document.querySelector(".pdf-loading");
-    
+
     // ========== Manual Modal Close ==========
     closeModalBtn.addEventListener("click", () => {
       pdfModal.hide();
     });
 
-
     // ========== Original Fetch Code ==========
-    const [aboutRes, skillsRes, projectsRes, teamRes] = await Promise.all([
+    const [aboutRes, skillsRes, projectsRes, memberRes] = await Promise.all([
       fetch("http://localhost:5000/api/about"),
       fetch("http://localhost:5000/api/skill"),
       fetch("http://localhost:5000/api/project"),
-      fetch("http://localhost:5000/api/team"),
+      fetch("http://localhost:5000/api/member"),
     ]);
 
     const aboutData = await aboutRes.json();
     const skillsData = await skillsRes.json();
     const projectsData = await projectsRes.json();
-    const teamData = await teamRes.json();
+    const memberData = await memberRes.json();
 
-    
     // ========== Modified About Section ==========
     if (aboutData?.data) {
       document.getElementById("about-title").textContent =
@@ -87,98 +85,114 @@ document.addEventListener("DOMContentLoaded", async () => {
       }
     }
 
-    // ========== Original Skills Section ==========
-    if (skillsData) {
+    // ========== Modified Skills Section ==========
+    if (skillsData?.data) {
+      // Changed from skillsData to skillsData.data
       const skillContainer = document.getElementById("skill-container");
       skillContainer.innerHTML = "";
-      const skillsArray = Array.isArray(skillsData) ? skillsData : [skillsData];
+      const skillsArray = Array.isArray(skillsData.data)
+        ? skillsData.data
+        : [skillsData.data]; // Access .data
 
       skillsArray.forEach((skill) => {
-        const iconSrc = getImagePath(skill.icon, "assets/img/pencil-case.svg");
+        // Simplified image handling (remove Buffer check)
+        const iconSrc = skill.icon
+          ? `http://localhost:5000${skill.icon}` // Directly use the stored path
+          : "assets/img/skill.svg";
 
         const skillCol = document.createElement("div");
         skillCol.className = "col-md-6 col-lg-3";
         skillCol.innerHTML = `
-                  <div class="skill-card">
-                      <div class="body">
-                          <img src="${iconSrc}" alt="${
+      <div class="skill-card">
+          <div class="body">
+              <img src="${iconSrc}" alt="${
           skill.title || "Skill"
         }" class="icon" 
-                              onerror="this.src='assets/img/pencil-case.svg'">
-                          <h6 class="title">${skill.title || "Skill Title"}</h6>
-                          <p class="subtitle">${
-                            skill.description || "Skill description"
-                          }</p>
-                      </div>
-                  </div>
-              `;
+                  onerror="this.src='assets/img/skill.svg'">
+              <h6 class="title">${skill.title || "Skill Title"}</h6>
+              <p class="subtitle">${
+                skill.description || "Skill description"
+              }</p>
+          </div>
+      </div>
+    `;
         skillContainer.appendChild(skillCol);
       });
     }
 
-    // ========== Original Projects Section ==========
-    if (projectsData) {
-      const projectsContainer = document.getElementById("projects-container");
-      projectsContainer.innerHTML = "";
-      const projectsArray = Array.isArray(projectsData)
-        ? projectsData
-        : [projectsData];
+// ========== Modified Projects Section ==========
+if (projectsData?.data) {
+  const projectsContainer = document.getElementById("projects-container");
+  projectsContainer.innerHTML = "";
+  const projectsArray = Array.isArray(projectsData.data) 
+    ? projectsData.data
+    : [projectsData.data];
 
-      projectsArray.forEach((project) => {
-        const imageSrc = getImagePath(project.image, "assets/img/folio-1.jpg");
+  projectsArray.forEach((project) => {
+    // Directly use the image path from backend
+    const imageSrc = project.image
+      ? `http://localhost:5000${project.image}` // Use your backend URL
+      : "assets/img/folio-1.jpg";
 
-        const projectCol = document.createElement("div");
-        projectCol.className = "col-md-4";
-        projectCol.innerHTML = `
-                  <a href="#" class="projects-card">
-                      <img src="${imageSrc}" class="projects-card-img" 
-                          alt="${project.title || "Project"}"
-                          onerror="this.src='assets/img/folio-1.jpg'">
-                      <span class="projects-card-overlay">
-                          <span class="projects-card-caption">
-                              <h4>${project.title || "Project Title"}</h4>
-                              <p class="font-weight-normal">${
-                                project.description || "Project description"
-                              }</p>
-                          </span>
-                      </span>
-                  </a>
-              `;
-        projectsContainer.appendChild(projectCol);
-      });
-    }
+    const projectCol = document.createElement("div");
+    projectCol.className = "col-md-4";
+    projectCol.innerHTML = `
+      <a href="#" class="projects-card">
+          <img src="${imageSrc}" class="projects-card-img" 
+              alt="${project.title || "Project"}"
+              onerror="this.src='assets/img/folio-1.jpg'">
+          <span class="projects-card-overlay">
+              <span class="projects-card-caption">
+                  <h4>${project.title || "Project Title"}</h4>
+                  <p class="font-weight-normal">
+                      ${project.description || "Project description"}
+                  </p>
+              </span>
+          </span>
+      </a>
+    `;
+    projectsContainer.appendChild(projectCol);
+  });
+}
 
-    // ========== Original Team Section ==========
-    if (teamData) {
-      const teamContainer = document.getElementById("team-container");
-      teamContainer.innerHTML = "";
-      const teamArray = Array.isArray(teamData) ? teamData : [teamData];
+// ========== Modified Team Section ==========
+if (memberData?.data) {
+  const memberContainer = document.getElementById("team-container");
+  memberContainer.innerHTML = "";
+  const memberArray = Array.isArray(memberData.data) 
+    ? memberData.data
+    : [memberData.data];
 
-      teamArray.forEach((member) => {
-        const avatarSrc = getImagePath(member.avatar, "assets/img/avatar2.jpg");
+  memberArray.forEach((member) => {
+    // Directly use avatar path from backend
+    const avatarSrc = member.avatar
+      ? `http://localhost:5000${member.avatar}`
+      : "assets/img/avatar2.jpg";
 
-        const teamCol = document.createElement("div");
-        teamCol.className = "col-md-6";
-        teamCol.innerHTML = `
-                  <div class="team-card">
-                      <div class="team-card-img-holder">
-                          <img src="${avatarSrc}" class="team-card-img" 
-                              alt="${member.title || "Team Member"}"
-                              onerror="this.src='assets/img/avatar2.jpg'">
-                      </div>
-                      <div class="team-card-body">
-                          <p class="team-card-subtitle">${
-                            member.description || "Team member description"
-                          }</p>
-                          <h6 class="team-card-title">${
-                            member.title || "Team Member Name"
-                          }</h6>
-                      </div>
-                  </div>
-              `;
-        teamContainer.appendChild(teamCol);
-      });
-    }
+    const memberCol = document.createElement("div");
+    memberCol.className = "col-md-6 col-lg-4 mb-4"; // Added responsive columns
+    memberCol.innerHTML = `
+      <div class="team-card h-100">
+          <div class="team-card-img-holder">
+              <img src="${avatarSrc}" class="team-card-img" 
+                  alt="${member.name || "Team Member"}"
+                  onerror="this.src='assets/img/avatar2.jpg'">
+          </div>
+          <div class="team-card-body text-center p-3">
+              <h5 class="team-card-title mb-2">${member.name || "Team Member"}</h5>
+              <p class="team-card-description ml-3">${
+                member.info || "Member description"
+              }</p>
+              ${member.linkedin ? `<a href="${member.linkedin}" target="_blank" class="btn btn-outline-primary btn-sm mt-2">
+                  <i class="bi bi-linkedin"></i> Connect
+              </a>` : ''}
+          </div>
+      </div>
+    `;
+    memberContainer.appendChild(memberCol);
+  });
+}
+
   } catch (error) {
     console.error("Error fetching data:", error);
     const errorElement = document.createElement("div");

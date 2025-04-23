@@ -11126,6 +11126,7 @@ p {
 }
 
 .skill-card {
+  margin-top: 20px;
   position: relative;
   min-height: 230px;
   border: 1px solid #dee2e6;
@@ -11182,6 +11183,7 @@ p {
 
 /*/ projects wrapper */
 .projects-card {
+  margin-top: 20px;
   display: block;
   position: relative;
   overflow: hidden;
@@ -11189,6 +11191,7 @@ p {
 
 .projects-card .projects-card-img {
   width: 100%;
+  height: 200px;
 }
 
 .projects-card .projects-card-overlay {

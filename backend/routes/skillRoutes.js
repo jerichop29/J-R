@@ -1,38 +1,16 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
-const mongoose = require("mongoose");
-const Skill = mongoose.model("Skill"); // Get the registered model
+const { upload, createSkill, getSkills, updateSkill, deleteSkill, getSkillById, getSkillCount } = require('../controller/skillController');
 
-// GET Skill data
-router.get("/", async (req, res, next) => {
-  try {
-    const skill = await Skill.find();
-    if (!skill) {
-      // Create default if not exists
-      const newSkill = await Skill.create({});
-      return res.json(newSkill);
-    }
-    res.json(skill);
-  } catch (err) {
-    next(err);
-  }
-});
+router.get('/count', getSkillCount);
 
-// PUT Update Skill data
-router.put("/:id", async (req, res, next) => {
-  try {
-    const updatedSkill = await Skill.findByIdAndUpdate(
-      req.params.id,
-      req.body,
-      { new: true, runValidators: true }
-    );
-    if (!updatedSkill) {
-      return res.status(404).json({ message: "Skill data not found" });
-    }
-    res.json(updatedSkill);
-  } catch (err) {
-    next(err);
-  }
-});
+router.route('/')
+  .get(getSkills)                // Get all skills
+  .post(upload.single('icon'), createSkill);  // Create new skill
+
+router.route('/:id')
+  .get(getSkillById)          // Get skill by ID
+  .put(upload.single('icon'), updateSkill)    // Update skill
+  .delete(deleteSkill);          // Delete skill
 
 module.exports = router;

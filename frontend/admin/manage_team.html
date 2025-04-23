@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -136,7 +135,8 @@
               <li class="nav-item topbar-user dropdown hidden-caret">
                 <a class="dropdown-toggle profile-pic" data-bs-toggle="dropdown" href="#" aria-expanded="false">
                   <div class="avatar-sm">
-                    <img src="https://cdn-icons-png.flaticon.com/512/6522/6522516.png" alt="..." class="avatar-img rounded-circle" />
+                    <img src="https://cdn-icons-png.flaticon.com/512/6522/6522516.png" alt="..."
+                      class="avatar-img rounded-circle" />
                   </div>
                   <span class="profile-username">
                   </span>
@@ -146,11 +146,12 @@
                     <li>
                       <div class="user-box">
                         <div class="avatar-lg">
-                          <img src="https://cdn-icons-png.flaticon.com/512/6522/6522516.png" alt="image profile" class="avatar-img rounded" />
+                          <img src="https://cdn-icons-png.flaticon.com/512/6522/6522516.png" alt="image profile"
+                            class="avatar-img rounded" />
                         </div>
                         <div class="u-text">
                           <h4>Reyven</h4>
-                          <p class="text-muted">Reyven@example.com</p>
+                          <p class="text-muted">hello@example.com</p>
                         </div>
                       </div>
                     </li>
@@ -167,7 +168,40 @@
         <!-- End Navbar -->
       </div>
 
-      
+  <!-- Edit Modal -->
+  <div class="modal fade" id="editMemberModal" tabindex="-1" role="dialog" aria-labelledby="editMemberModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <form id="editMemberForm" enctype="multipart/form-data">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Edit Team Member</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <input type="hidden" id="editMemberId">
+          <div class="form-group">
+            <label for="editName">Name</label>
+            <input type="text" id="editName" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label for="editInfo">Information</label>
+            <textarea id="editInfo" class="form-control" required></textarea>
+          </div>
+          <div class="form-group">
+            <label>Current Avatar</label>
+            <div id="currentAvatar"></div>
+            <input type="file" id="editAvatar" class="form-control mt-2">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary">Update Member</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
       <div class="container">
         <div class="page-inner">
           <div class="page-header">
@@ -192,11 +226,8 @@
                 <div class="card-header">
                   <div class="d-flex align-items-center">
                     <h4 class="card-title">Team Table</h4>
-                    <button
-                      class="btn btn-primary btn-round ms-auto"
-                      data-bs-toggle="modal"
-                      data-bs-target="#addRowModal"
-                    >
+                    <button class="btn btn-primary btn-round ms-auto" data-bs-toggle="modal"
+                      data-bs-target="#addRowModal">
                       <i class="fa fa-plus"></i>
                       Add Member
                     </button>
@@ -204,85 +235,51 @@
                 </div>
                 <div class="card-body">
                   <!-- Modal -->
-                  <div
-                    class="modal fade"
-                    id="addRowModal"
-                    tabindex="-1"
-                    role="dialog"
-                    aria-hidden="true"
-                  >
+                  <div class="modal fade" id="addRowModal" tabindex="-1" role="dialog" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                       <div class="modal-content">
                         <div class="modal-header border-0">
                           <h5 class="modal-title">
                             <span class="fw-mediumbold"> New</span>
-                            <span class="fw-light"> Member </span>
+                            <span class="fw-light"> Team Member </span>
                           </h5>
-                          <button
-                            type="button"
-                            class="close"
-                            data-dismiss="modal"
-                            aria-label="Close"
-                          >
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                           </button>
                         </div>
                         <div class="modal-body">
                           <p class="small">
-                            Create a new member using this form, make sure you
-                            fill them all
+                            Add a new team member using this form
                           </p>
                           <form>
                             <div class="row">
                               <div class="col-sm-12">
                                 <div class="form-group form-group-default">
                                   <label>Name</label>
-                                  <input
-                                    id="addName"
-                                    type="text"
-                                    class="form-control"
-                                    placeholder="fill name"
-                                  />
+                                  <input id="addName" type="text" class="form-control" placeholder="Member name" />
                                 </div>
                               </div>
                               <div class="col-sm-12">
                                 <div class="form-group form-group-default">
-                                  <label>Info</label>
-                                  <input
-                                    id="addInfo"
-                                    type="text"
-                                    class="form-control"
-                                    placeholder="fill info"
-                                  />
+                                  <label>Information</label>
+                                  <input id="addInfo" type="text" class="form-control"
+                                    placeholder="Member information" />
                                 </div>
                               </div>
                               <div class="col-sm-12">
                                 <div class="form-group form-group-default">
                                   <label>Avatar</label>
-                                  <input
-                                    id="addAvatar"
-                                    type="file"
-                                    class="form-control-file"
-                                    placeholder="upload avatar"
-                                  />
+                                  <input id="addAvatar" type="file" class="form-control-file"  />
                                 </div>
                               </div>
                             </div>
                           </form>
                         </div>
                         <div class="modal-footer border-0">
-                          <button
-                            type="button"
-                            id="addRowButton"
-                            class="btn btn-primary"
-                          >
+                          <button type="button" id="addRowButton" class="btn btn-primary">
                             Add
                           </button>
-                          <button
-                            type="button"
-                            class="btn btn-danger"
-                            data-dismiss="modal"
-                          >
+                          <button type="button" class="btn btn-danger" data-dismiss="modal">
                             Close
                           </button>
                         </div>
@@ -291,14 +288,11 @@
                   </div>
 
                   <div class="table-responsive">
-                    <table
-                      id="add-row"
-                      class="display table table-striped table-hover"
-                    >
+                    <table id="add-row" class="display table table-striped table-hover">
                       <thead>
                         <tr>
                           <th>Name</th>
-                          <th>Info</th>
+                          <th>Information</th>
                           <th>Avatar</th>
                           <th style="width: 10%">Action</th>
                         </tr>
@@ -306,39 +300,13 @@
                       <tfoot>
                         <tr>
                           <th>Name</th>
-                          <th>Info</th>
+                          <th>Information</th>
                           <th>Avatar</th>
                           <th>Action</th>
                         </tr>
                       </tfoot>
                       <tbody>
-                        <tr>
-                            <td>Member Name</td>
-                            <td>Member Info</td>
-                            <td>avatar.png</td>
-                            <td>
-                              <div class="form-button-action">
-                                <button
-                                  type="button"
-                                  data-bs-toggle="tooltip"
-                                  title=""
-                                  class="btn btn-link btn-primary btn-lg"
-                                  data-original-title="Edit Task"
-                                >
-                                  <i class="fa fa-edit"></i>
-                                </button>
-                                <button
-                                  type="button"
-                                  data-bs-toggle="tooltip"
-                                  title=""
-                                  class="btn btn-link btn-danger"
-                                  data-original-title="Remove"
-                                >
-                                  <i class="fa fa-times"></i>
-                                </button>
-                              </div>
-                            </td>
-                          </tr>
+                        <!-- DataTable will populate this -->
                       </tbody>
                     </table>
                   </div>
@@ -348,7 +316,7 @@
           </div>
         </div>
       </div>
-
+      
       <footer class="footer">
         <div class="container-fluid d-flex justify-content-center">
           <div class="copyright text-center">
@@ -390,63 +358,7 @@
   <script src="assets/js/kaiadmin.min.js"></script>
 
   <script src="assets/js/demo.js"></script>
-      <script>
-      $(document).ready(function () {
-        $("#basic-datatables").DataTable({});
 
-        $("#multi-filter-select").DataTable({
-          pageLength: 5,
-          initComplete: function () {
-            this.api()
-              .columns()
-              .every(function () {
-                var column = this;
-                var select = $(
-                  '<select class="form-select"><option value=""></option></select>'
-                )
-                  .appendTo($(column.footer()).empty())
-                  .on("change", function () {
-                    var val = $.fn.dataTable.util.escapeRegex($(this).val());
-
-                    column
-                      .search(val ? "^" + val + "$" : "", true, false)
-                      .draw();
-                  });
-
-                column
-                  .data()
-                  .unique()
-                  .sort()
-                  .each(function (d, j) {
-                    select.append(
-                      '<option value="' + d + '">' + d + "</option>"
-                    );
-                  });
-              });
-          },
-        });
-
-        // Add Row
-        $("#add-row").DataTable({
-          pageLength: 5,
-        });
-
-        var action =
-          '<td> <div class="form-button-action"> <button type="button" data-bs-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Edit Task"> <i class="fa fa-edit"></i> </button> <button type="button" data-bs-toggle="tooltip" title="" class="btn btn-link btn-danger" data-original-title="Remove"> <i class="fa fa-times"></i> </button> </div> </td>';
-
-        $("#addRowButton").click(function () {
-          $("#add-row")
-            .dataTable()
-            .fnAddData([
-              $("#addName").val(),
-              $("#addPosition").val(),
-              $("#addOffice").val(),
-              action,
-            ]);
-          $("#addRowModal").modal("hide");
-        });
-      });
-    </script>
+  <script src="script/manage_team.js"></script>
 </body>
-
 </html>
