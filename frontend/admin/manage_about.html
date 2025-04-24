@@ -41,11 +41,24 @@
     <!-- Sidebar -->
     <div class="sidebar" data-background-color="dark">
       <div class="sidebar-logo">
+        <!-- Logo Header -->
         <div class="logo-header" data-background-color="dark">
           <a href="dashboard.html" class="logo">
             <img src="assets/img/logo.svg" alt="navbar brand" class="navbar-brand" height="20" />
           </a>
+          <div class="nav-toggle">
+            <button class="btn btn-toggle toggle-sidebar">
+              <i class="gg-menu-right"></i>
+            </button>
+            <button class="btn btn-toggle sidenav-toggler">
+              <i class="gg-menu-left"></i>
+            </button>
+          </div>
+          <button class="topbar-toggler more">
+            <i class="gg-more-vertical-alt"></i>
+          </button>
         </div>
+        <!-- End Logo Header -->
       </div>
       <div class="sidebar-wrapper scrollbar scrollbar-inner">
         <div class="sidebar-content">
@@ -57,6 +70,9 @@
               </a>
             </li>
             <li class="nav-section">
+              <span class="sidebar-mini-icon">
+                <i class="fa fa-ellipsis-h"></i>
+              </span>
               <h4 class="text-section">Manage Feature</h4>
             </li>
             <li class="nav-item active">
@@ -95,12 +111,7 @@
           <!-- Logo Header -->
           <div class="logo-header" data-background-color="dark">
             <a href="index.html" class="logo">
-              <img
-                src="assets/img/kaiadmin/logo_light.svg"
-                alt="navbar brand"
-                class="navbar-brand"
-                height="20"
-              />
+              <img src="assets/img/kaiadmin/logo_light.svg" alt="navbar brand" class="navbar-brand" height="20" />
             </a>
             <div class="nav-toggle">
               <button class="btn btn-toggle toggle-sidebar">
@@ -271,13 +282,38 @@
   </div>
 </div>
 
-  <!-- Core JS Files -->
-  <script src="assets/js/core/jquery-3.7.1.min.js"></script>
-  <script src="assets/js/core/popper.min.js"></script>
-  <script src="assets/js/core/bootstrap.min.js"></script>
-  <script src="assets/js/plugin/datatables/datatables.min.js"></script>
-  <script src="assets/js/kaiadmin.min.js"></script>
-  <script src="script/manage_about.js"></script>
+<!--   Core JS Files   -->
+<script src="assets/js/core/jquery-3.7.1.min.js"></script>
+<script src="assets/js/core/popper.min.js"></script>
+<script src="assets/js/core/bootstrap.min.js"></script>
+
+<!-- jQuery Scrollbar -->
+<script src="assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
+
+<!-- Chart JS -->
+<script src="assets/js/plugin/chart.js/chart.min.js"></script>
+
+<!-- jQuery Sparkline -->
+<script src="assets/js/plugin/jquery.sparkline/jquery.sparkline.min.js"></script>
+
+<!-- Chart Circle -->
+<script src="assets/js/plugin/chart-circle/circles.min.js"></script>
+
+<!-- Datatables -->
+<script src="assets/js/plugin/datatables/datatables.min.js"></script>
+
+<!-- jQuery Vector Maps -->
+<script src="assets/js/plugin/jsvectormap/jsvectormap.min.js"></script>
+<script src="assets/js/plugin/jsvectormap/world.js"></script>
+
+<!-- Sweet Alert -->
+<script src="assets/js/plugin/sweetalert/sweetalert.min.js"></script>
+
+<!-- Kaiadmin JS -->
+<script src="assets/js/kaiadmin.min.js"></script>
+
+<script src="assets/js/demo.js"></script>
+<script src="script/manage_about.js"></script>
 </body>
 
 </html>
