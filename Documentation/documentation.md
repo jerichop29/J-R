@@ -10,7 +10,7 @@ This is a lightweight and dynamic portfolio web application built with MongoDB a
 
 ---
 
-### 1. `about`
+### 1. `About`
 Stores a general introduction or overview of the team.
 
 | Field      | Type      | Required | Description                              |
@@ -23,7 +23,7 @@ Stores a general introduction or overview of the team.
 
 ---
 
-### 2. `members`
+### 2. `Member`
 Contains team member profiles.
 
 | Field       | Type      | Required | Description                            |
@@ -37,7 +37,7 @@ Contains team member profiles.
 
 ---
 
-### 3. `projects`
+### 3. `Project`
 Contains a list of projects the team has worked on.
 
 | Field       | Type      | Required | Description                          |
@@ -52,7 +52,7 @@ Contains a list of projects the team has worked on.
 
 ---
 
-### 4. `skills`
+### 4. `Skill`
 Stores the skills/technologies the team is proficient in.
 
 | Field       | Type      | Required | Description                        |
@@ -66,7 +66,7 @@ Stores the skills/technologies the team is proficient in.
 
 ---
 
-### 5. `users`
+### 5. `User`
 Handles authentication and user roles.
 
 | Field       | Type      | Required | Description                          |
